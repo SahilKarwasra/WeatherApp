@@ -28,7 +28,7 @@ class WeatherViewModel(
             try {
 
                 val weatherData = withContext(Dispatchers.IO) {
-                    weatherApi.getWeatherData(location)
+                    weatherApi.getWeatherData(location,7)
                 }
                 _weatherResult.postValue(NetworkResponse.Success(weatherData))
             } catch (e: Exception) {

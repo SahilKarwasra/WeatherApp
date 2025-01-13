@@ -11,15 +11,16 @@ import io.ktor.http.contentType
 
 class WeatherApiImpl(
     private val client: HttpClient,
-    private val apiKey: String
+    private val apiKey: String,
 ) : WeatherApi {
 
 
-    override suspend fun getWeatherData(location: String): WeatherModel {
+    override suspend fun getWeatherData(location: String, days: Int): WeatherModel {
         return  client.get(HttpRoutes.locationUrl) {
             contentType(ContentType.Application.Json)
             parameter("key", apiKey)
             parameter("q", location)
+            parameter("days", days)
         }.body()
     }
 
